@@ -1,0 +1,109 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# User-specific files (Mono)
+*.userprefs
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio 2019/2022 cache/options directory
+.vscode/
+.vs/
+.vscode/
+*.vscode
+.vs/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_i.h
+*.ilk
+*.meta
+*.obj
+*.pch
+*.pdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*.log
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# SQL Server files
+*.mdf
+*.ldf
+*.ndf
+
+# Business Intelligence projects
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+
+# Microsoft Azure Web App publish settings. [Azure Web Apps](https://azure.microsoft.com/en-us/documentation/articles/web-sites-publish/)
+PublishScripts/
+*.publishsettings
+
+# Microsoft Azure WebJobs publish settings. [Azure WebJobs](https://azure.microsoft.com/en-us/documentation/articles/web-sites-create-web-jobs/)
+*.publish.xml
+*.publishproj
+
+# Microsoft Azure Mobile Services publish settings. [Azure Mobile Services](https://azure.microsoft.com/en-us/documentation/articles/mobile-services-how-to-configure-git-repository/)
+*.azurePubxml
+*.pubxml
+*.publishsettings
+
+# Microsoft Azure API Management Service publish settings. [Azure API Management Service](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-deploy/)
+*.cloudfoundry.json
+
+# Windows 10 Universal
+[Ww][Ii][Nn]10U[Aa]pp/
+
+# R Tools for Visual Studio
+RTVS/
+
+# Other
+codeAnalysisLog.xml
+.vspscc
+
+# End of https://www.toptal.com/developers/gitignore/api/visualstudio

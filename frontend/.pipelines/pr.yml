@@ -1,0 +1,92 @@
+trigger:
+- main
+
+pr:
+- main
+
+variables:
+  frontendDir: 'frontend'
+  backendDir: 'api'
+
+jobs:
+- job: Build_and_Test
+  displayName: Build and Test
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '8.x'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - script: |
+      dotnet restore $(backendDir)/MinimalApiProject.sln
+    displayName: 'Restore .NET Dependencies'
+
+  - script: |
+      dotnet build $(backendDir)/MinimalApiProject.sln --no-restore
+    displayName: 'Build .NET Project'
+
+  - script: |
+      dotnet test $(backendDir)/MinimalApiProject.sln --no-restore --logger trx
+    displayName: 'Run .NET Unit Tests'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/*.trx'
+      testRunTitle: 'Unit Test Results'
+      failTaskOnFailedTests: true
+      failTaskOnFailureToPublishResults: true
+      failTaskOnMissingResultsFile: true
+      publishRunAttachments: true
+    condition: succeededOrFailed()
+    displayName: 'Publish Test Results'
+
+  - task: UseNode@1
+    inputs:
+      versionSpec: '18.x' # Specify your Node.js version here
+    displayName: 'Set up Node.js'
+
+  - script: |
+      cd $(frontendDir)
+      pnpm install --frozen-lockfile
+    displayName: 'Install Frontend Dependencies'
+
+  - script: |
+      cd $(frontendDir)
+      pnpm lint
+    displayName: 'Lint Frontend Code'
+
+  - script: |
+      cd $(frontendDir)
+      pnpm build
+    displayName: 'Build Frontend Project'
+
+  - script: |
+      cd $(frontendDir)
+      pnpm test:coverage
+    displayName: 'Run Frontend Tests and Generate Coverage'
+
+  - task: PublishTestResults@2
+    displayName: "Publishing frontend Unit Tests Results"
+    condition: succeededOrFailed()
+    inputs:
+      testRunner: JUnit
+      testResultsFiles: '$(frontendDir)\junit.xml'
+      mergeTestResults: true
+      testRunTitle: "Frontend unit-tests"
+      failTaskOnFailedTests: true
+
+# - task: reportgenerator@5
+#                 inputs:
+#                   reports: |
+#                     $(frontendDir)\coverage\clover.xml
+#                   targetdir: $(frontendDir)\coveragereport
+
+#               - task: PublishCodeCoverageResults@2
+#                 inputs:
+#                   codeCoverageTool: "Cobertura"
+#                   summaryFileLocation: '$(frontendDir)\coveragereport\Cobertura.xml'
+#                   failIfCoverageEmpty: true

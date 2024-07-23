@@ -1,0 +1,10 @@
+{
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+        "source.fixAll.eslint": "always"
+    },
+    "editor.indentSize": 4,
+    "editor.detectIndentation": false,
+}

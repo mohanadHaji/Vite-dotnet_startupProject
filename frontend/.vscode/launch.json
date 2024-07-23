@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Launch Chrome against localhost",
+        "type": "chrome",
+        "request": "launch",
+        "url": "http://localhost:5173",
+        "webRoot": "${workspaceFolder}",
+        "sourceMaps": true,
+        "skipFiles": ["<node_internals>/**"],
+        "preLaunchTask": "vite"
+      }
+    ],
+    "compounds": [
+      {
+        "name": "Start Vite and Launch Chrome",
+        "configurations": ["Launch Chrome against localhost"],
+        "stopAll": true
+      }
+    ]
+  }
